@@ -21,6 +21,7 @@ export default {
   computed: {
     title () {
       return this.singer.name
+      // console.log()
     },
     bgImage () {
       return this.singer.avatar
@@ -31,18 +32,19 @@ export default {
   },
   created () {
     this._getDetail()
-    // console.log(this.singer)
+    console.log(this.singer)
   },
   methods: {
     _getDetail () {
       if (!this.singer.id) {
         this.$router.push('/singer')
+        return
       }
       getSingerDetail(this.singer.id).then((res) => {
         if (res.code === ERR_OK) {
-          // console.log(res.data.list)
+          console.log(res.data.list)
           this.songs = this._normalizeSonges(res.data.list)
-          console.log(this.songs)
+          // console.log(this.songs)
         }
       })
     },

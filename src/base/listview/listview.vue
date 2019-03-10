@@ -105,7 +105,7 @@ export default {
       this.touch.y2 = firstTouch.pageY
       let delta = (this.touch.y2 - this.touch.y1) / ANCHOR_HEIGHT | 0
       let anchorIndex = parseInt(this.touch.anchorIndex + delta)
-      console.log(anchorIndex)
+      // console.log(anchorIndex)
       this._scrollTo(anchorIndex)
     },
     scroll (pos) {
@@ -201,6 +201,7 @@ export default {
           border-radius: 50%
         .name
           margin-left: 20px
+          margin-top: 20px
           color: $color-text-1
           font-size: $font-size-medium
     .list-shortcut
