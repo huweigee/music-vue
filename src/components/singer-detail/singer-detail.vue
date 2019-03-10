@@ -20,10 +20,11 @@ export default {
   },
   computed: {
     title () {
+      // console.log(cccccccc)
       return this.singer.name
-      // console.log()
     },
     bgImage () {
+      // console.log(ddddddd)
       return this.singer.avatar
     },
     ...mapGetters([
@@ -32,7 +33,7 @@ export default {
   },
   created () {
     this._getDetail()
-    console.log(this.singer)
+    // console.log(this.singer)
   },
   methods: {
     _getDetail () {
@@ -42,7 +43,7 @@ export default {
       }
       getSingerDetail(this.singer.id).then((res) => {
         if (res.code === ERR_OK) {
-          console.log(res.data.list)
+          // console.log(res.data.list)
           this.songs = this._normalizeSonges(res.data.list)
           // console.log(this.songs)
         }
@@ -53,6 +54,7 @@ export default {
       list.forEach((item) => {
         let {musicData} = item
         if (musicData.songid && musicData.albummid) {
+          // console.log('gggggggggg')
           ret.push(createSong(musicData))
         }
       })

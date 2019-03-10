@@ -4,7 +4,7 @@
       <i class="icon-back"></i>
     </div>
     <h1 class="title" v-html="title"></h1>
-    <div class="bg-image" :sytle="bgStyle" ref="bgImage">
+    <div class="bg-image" :style="bgStyle" ref="bgImage">
       <div class="play-wrapper">
         <div class="play" v-show="songs.length>0" ref="playBtn">
           <i class="icon-play"></i>
