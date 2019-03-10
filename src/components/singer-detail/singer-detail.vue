@@ -11,6 +11,7 @@ import {getSingerDetail} from 'api/singer'
 import {ERR_OK} from 'api/config'
 import {createSong} from 'common/js/song'
 import MusicList from 'components/music-list/music-list'
+// import Singer from 'common/js/singer'
 export default {
   data () {
     return {
@@ -49,7 +50,7 @@ export default {
       let ret = []
       list.forEach((item) => {
         let {musicData} = item
-        if (musicData.songid && musicData.ablummid) {
+        if (musicData.songid && musicData.albummid) {
           ret.push(createSong(musicData))
         }
       })
