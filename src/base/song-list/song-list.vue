@@ -19,14 +19,16 @@ export default {
   props: {
     songs: {
       type: Array,
-      default: []
+      default: null
     }
   },
   methods: {
     selectItem (item, index) {
+      console.log('ddddd')
       this.$emit('select', item, index)
     },
     getDesc (song) {
+      // console.log('aaaaa')
       return `${song.singer}·${song.album}`
     }
   }

@@ -21,7 +21,9 @@
             :listen-scroll="listenScroll"
             @scroll="scroll">
       <div class="song-list-wrapper">
-        <song-list :songs="songs" @select="selectItem"></song-list>
+        <song-list :songs="songs"
+                  @select="selectItem">
+        </song-list>
       </div>
       <div class="loading-container" v-show="!songs.length">
         <loading></loading>
@@ -49,7 +51,7 @@ export default {
     },
     songs: {
       type: Array,
-      default: []
+      default: null
     },
     title: {
       type: String,
@@ -93,14 +95,14 @@ export default {
     ])
   },
   watch: {
-    scrollY (newVal) {
-      let translateY = Math.max(this.minTransalteY, newVal)
+    scrollY (newY) {
+      let translateY = Math.max(this.minTransalteY, newY)
       let zIndex = 0
       let scale = 1
       let blur = 0
       // this.$refs.layer.style['webkitTransform'] = `translate3d(0, ${translateY}px, 0)`
-      const percent = Math.abs(newVal / this.imageHeight)
-      if (newVal > 0) {
+      const percent = Math.abs(newY / this.imageHeight)
+      if (newY > 0) {
         scale = 1 + percent
         zIndex = 10
       } else {
@@ -109,7 +111,7 @@ export default {
       this.$refs.layer.style[transform] = `translate3d(0, ${translateY}px, 0)`
       this.$refs.filter.style[backdrop] = `blur(${blur}px)`
       // this.$refs.filter.style['webkitBackdrop-filter'] = `blur(${blur}px)`
-      if (newVal < this.minTransalteY) {
+      if (newY < this.minTransalteY) {
         zIndex = 10
         this.$refs.bgImage.style.paddingTop = 0
         this.$refs.bgImage.style.height = `${RESERVED_HEIGHT}px`
