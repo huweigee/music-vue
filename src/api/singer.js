@@ -20,22 +20,7 @@ export function getSingerList () {
     format: 'json',
     needNewCode: 0
   })
-  // const data = {
-  //   channel: 'singer',
-  //   page: 'list',
-  //   key: 'all_all_all',
-  //   pagesize: 100,
-  //   pagenum: 1,
-  //   hostUin: 0,
-  //   platform: 'yqq',
-  //   g_tk: 5381,
-  //   loginUin: '0',
-  //   format: 'json',
-  //   inCharset: 'utf8',
-  //   outCharset: 'utf-8',
-  //   notice: 0,
-  //   needNewCode: 0
-  // }
+
   return axios.get(url, {
     params: data
   }).then((res) => {
@@ -80,49 +65,76 @@ export function getSingerDetail (singerId) {
     return Promise.resolve(res.data)
   })
 }
-// 网上查找的方式一
-// export function getSingerList () {
-//   const url = '/api/getSingerList'
+
+export function getMusic (songmid) {
+  const url = '/api/music'
+  const data = Object.assign({}, commonParams, {
+    songmid: songmid,
+    filename: 'C400' + songmid + '.m4a',
+    guid: 7981028948,
+    platform: 'yqq',
+    loginUin: 0,
+    hostUin: 0,
+    needNewCode: 0,
+    cid: 205361747,
+    uid: 0,
+    g_tk: 1928111839
+  })
+  return axios.get(url, {
+    params: data
+  }).then((res) => {
+    return Promise.resolve(res.data)
+  })
+}
+
+// export function getMusic (songmid) {
+//   const url = '/api/getMusic'
 
 //   const data = Object.assign({}, commonParams, {
-//     g_tk: 5381,
 //     loginUin: 0,
 //     hostUin: 0,
-//     format: 'json',
-//     inChatset: 'utf-8',
-//     outCharset: 'utf-8',
-//     notice: 0,
 //     platform: 'yqq',
-//     needNewCode: 0,
-//     data: {
-//       'comm"': {
-//         'ct': 24,
-//         'cv': 0
-//       },
-//       'singerList': {
-//         'module': 'Music.SingerListServer',
-//         'method': 'get_singer_list',
-//         'param': {
-//           'area': -100,
-//           'sex': -100,
-//           'genre': -100,
-//           'index': -100,
-//           'sin': 0,
-//           'cur_page': 1
+//     data: `{
+//       'req':{
+//         "module":"CDN.SrfCdnDispatchServer",
+//         "method":"GetCdnDispatch",
+//         "param":{
+//           "guid":"7035757095",
+//           "calltype":0,
+//           "userip":""
+//           }
+//         },
+//       "req_0":{
+//         "module":"vkey.GetVkeyServer",
+//         "method":"CgiGetVkey",
+//         "param":{
+//           "guid":"7035757095",
+//           "songmid":[${songmid}],
+//           "songtype":[0],
+//           "uin":"1532004959",
+//           "loginflag":1,
+//           "platform":"20"
 //         }
+//       },
+//       "comm":{
+//         "uin":1532004959,
+//         "format":"json",
+//         "ct":24,
+//         "cv":0
 //       }
-//     }
+//     }`
 //   })
 //   return axios.get(url, {
 //     params: data
 //   }).then((res) => {
-//     return Promise.resolve(res)
+//     return Promise.resolve(res.data)
 //   })
 // }
 
-// export function getSongVkey () {
+// export function getSongVkey (songmid) {
 //   const url = '/getVkey'
 //   const data = Object.assign({}, commonParams, {
+//     songmid: songmid,
 //     callback: 'get002341',
 //     jsonpCallback: 'get002341',
 //     loginUin: 0,

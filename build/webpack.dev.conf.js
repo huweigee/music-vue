@@ -88,6 +88,21 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           console.log(e)
         })
       })
+      // 获取播放源
+      app.get('/api/getMusic', (req, res) => {
+        var url = 'https://u.y.qq.com/cgi-bin/musicu.fcg'
+        axios.get(url, {
+          headers: {
+            referer: 'https://y.qq.com/portal/player.html',
+            host: 'c.y.qq.com'
+          },
+          params: req.query
+        }).then((response) => {
+          res.json(response.data)
+        }).catch((e) => {
+          console.log(e)
+        })
+      })
       // 获取歌词信息
       app.get('/api/lyric', (req, res) => {
         let url = 'https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg'
@@ -116,29 +131,29 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           })
       })
 
-      // app.get('/getVkey', function (req, res) {
-      //   const url = 'https://u.y.qq.com/cgi-bin/musicu.fcg'
+      app.get('/getVkey', function (req, res) {
+        const url = 'https://u.y.qq.com/cgi-bin/musicu.fcg'
 
-      //   axios.get(url, {
-      //     headers: {
-      //       referer: 'https://y.qq.com',
-      //       host: 'u.y.qq.com'
-      //     },
-      //     params: req.query
-      //   }).then((response) => {
-      //     let rest = response.data
-      //     if (typeof rest === 'string') {
-      //       let reg = /^\w+\(({[^()]+})\)$/
-      //       let matches = rest.match(reg)
-      //       if (matches) {
-      //         rest = JSON.parse(matches[1])
-      //       }
-      //     }
-      //     res.json(rest)
-      //   }).catch((e) => {
-      //     console.log(e)
-      //   })
-      // })
+        axios.get(url, {
+          headers: {
+            referer: 'https://y.qq.com',
+            host: 'u.y.qq.com'
+          },
+          params: req.query
+        }).then((response) => {
+          let rest = response.data
+          if (typeof rest === 'string') {
+            let reg = /^\w+\(({[^()]+})\)$/
+            let matches = rest.match(reg)
+            if (matches) {
+              rest = JSON.parse(matches[1])
+            }
+          }
+          res.json(rest)
+        }).catch((e) => {
+          console.log(e)
+        })
+      })
     },
     clientLogLevel: 'warning',
     historyApiFallback: {

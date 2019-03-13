@@ -7,7 +7,7 @@
 
 <script type="text/ecmascript-6">
 import { mapGetters } from 'vuex'
-import {getSingerDetail} from 'api/singer'
+import {getSingerDetail, getMusic} from 'api/singer'
 import {ERR_OK} from 'api/config'
 import {createSong} from 'common/js/song'
 import MusicList from 'components/music-list/music-list'
@@ -44,22 +44,44 @@ export default {
       getSingerDetail(this.singer.id).then((res) => {
         if (res.code === ERR_OK) {
           // console.log(res.data.list)
-          this.songs = this._normalizeSonges(res.data.list)
+          this.songs = this._normalizeSongs(res.data.list)
           // console.log(this.songs)
         }
       })
     },
-    _normalizeSonges (list) {
+    _normalizeSongs (list) {
+      // console.log(list)
       let ret = []
       list.forEach((item) => {
         let {musicData} = item
         if (musicData.songid && musicData.albummid) {
-          // console.log('gggggggggg')
-          ret.push(createSong(musicData))
+          getMusic(musicData.songmid).then((res) => {
+            console.log(res.data.items)
+            // const svley = res.data.items
+            // const songVkey = svley[0].vkey
+            ret.push(createSong(musicData, songVkey))
+          })
         }
       })
       return ret
     }
+
+    // _normalizeSongs (list) {
+    //   // console.log(list)
+    //   let ret = []
+    //   list.forEach((item) => {
+    //     let {musicData} = item
+    //     if (musicData.songid && musicData.albummid) {
+    //       console.log(item)
+    //       // const svley = res.data.item
+    //       // const songVkey = svley[0].vkey
+    //       // console.log(songVkey)
+    //       ret.push(createSong(musicData))
+    //     }
+    //   })
+    //   // console.log(ret)
+    //   return ret
+    // }
   },
   components: {
     MusicList
