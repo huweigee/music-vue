@@ -89,20 +89,20 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         })
       })
       // 获取播放源
-      app.get('/api/getMusic', (req, res) => {
-        var url = 'https://u.y.qq.com/cgi-bin/musicu.fcg'
-        axios.get(url, {
-          headers: {
-            referer: 'https://y.qq.com/portal/player.html',
-            host: 'c.y.qq.com'
-          },
-          params: req.query
-        }).then((response) => {
-          res.json(response.data)
-        }).catch((e) => {
-          console.log(e)
-        })
-      })
+      // app.get('/api/getMusic', (req, res) => {
+      //   var url = 'https://u.y.qq.com/cgi-bin/musicu.fcg'
+      //   axios.get(url, {
+      //     headers: {
+      //       referer: 'https://y.qq.com/portal/player.html',
+      //       host: 'c.y.qq.com'
+      //     },
+      //     params: req.query
+      //   }).then((response) => {
+      //     res.json(response.data)
+      //   }).catch((e) => {
+      //     console.log(e)
+      //   })
+      // })
       // 获取歌词信息
       app.get('/api/lyric', (req, res) => {
         let url = 'https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric_new.fcg'

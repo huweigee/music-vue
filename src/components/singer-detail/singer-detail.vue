@@ -7,7 +7,8 @@
 
 <script type="text/ecmascript-6">
 import { mapGetters } from 'vuex'
-import {getSingerDetail, getMusic} from 'api/singer'
+// import {getSingerDetail, getMusic} from 'api/singer'
+import {getSingerDetail} from 'api/singer'
 import {ERR_OK} from 'api/config'
 import {createSong} from 'common/js/song'
 import MusicList from 'components/music-list/music-list'
@@ -49,39 +50,39 @@ export default {
         }
       })
     },
-    _normalizeSongs (list) {
-      // console.log(list)
-      let ret = []
-      list.forEach((item) => {
-        let {musicData} = item
-        if (musicData.songid && musicData.albummid) {
-          getMusic(musicData.songmid).then((res) => {
-            console.log(res.data.items)
-            // const svley = res.data.items
-            // const songVkey = svley[0].vkey
-            ret.push(createSong(musicData, songVkey))
-          })
-        }
-      })
-      return ret
-    }
-
     // _normalizeSongs (list) {
     //   // console.log(list)
     //   let ret = []
     //   list.forEach((item) => {
     //     let {musicData} = item
     //     if (musicData.songid && musicData.albummid) {
-    //       console.log(item)
-    //       // const svley = res.data.item
-    //       // const songVkey = svley[0].vkey
-    //       // console.log(songVkey)
-    //       ret.push(createSong(musicData))
+    //       getMusic(musicData.songmid).then((res) => {
+    //         console.log(res.data.items)
+    //         // const svley = res.data.items
+    //         // const songVkey = svley[0].vkey
+    //         ret.push(createSong(musicData, songVkey))
+    //       })
     //     }
     //   })
-    //   // console.log(ret)
     //   return ret
     // }
+
+    _normalizeSongs (list) {
+      // console.log(list)
+      let ret = []
+      list.forEach((item) => {
+        let {musicData} = item
+        if (musicData.songid && musicData.albummid) {
+          // console.log(item)
+          // const svley = res.data.item
+          // const songVkey = svley[0].vkey
+          // console.log(songVkey)
+          ret.push(createSong(musicData))
+        }
+      })
+      // console.log(ret)
+      return ret
+    }
   },
   components: {
     MusicList

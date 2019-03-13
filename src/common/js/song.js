@@ -21,7 +21,8 @@ export function createSong (musicData, songVkey) {
     duration: musicData.interval,
     image: `https://y.gtimg.cn/music/photo_new/T002R300x300M000${musicData.albummid}.jpg?max_age=2592000`,
     // url: `http://amobile.music.tc.qq.com/C400${musicData.songmid}.m4a?fromtag=66`
-    url: `http://amobile.music.tc.qq.com/C400${musicData.songmid}.m4a?vkey=${songVkey}&guid1=7981028948&uin=0&fromtag=66`
+    url: `http://music.163.com/song/media/outer/url?id=317151.mp3 `
+    // url: `http://amobile.music.tc.qq.com/C400${musicData.songmid}.m4a?vkey=${songVkey}&guid1=7981028948&uin=0&fromtag=66`
     // url: `https://http://stream0.qqmusic.qq.com/${musicData.songid}.m4a?fromtag=46`
     // url: `http://ws.stream.qqmusic.qq.com/${musicData.songid}.m4a?fromtag=46`
     // url: `http://thirdparty.gtimg.com/${musicData.songid}.m4a?fromtag=46`
